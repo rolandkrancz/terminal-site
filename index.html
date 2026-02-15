@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>~/roland — terminal</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="terminal-window">
+    <!-- Title Bar -->
+    <div class="title-bar">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
+      <div class="title">roland@dev — zsh</div>
+    </div>
+
+    <!-- Terminal Body -->
+    <div class="terminal-body" id="terminal">
+      <div id="output"></div>
+
+      <!-- Input Row -->
+      <div class="prompt-row" id="prompt-row">
+        <span class="prompt-label">roland@dev</span>
+        <span class="prompt-path" id="prompt-path">~</span>
+        <span class="prompt-symbol">$</span>
+        <input id="input" type="text" autofocus autocomplete="off" spellcheck="false" />
+      </div>
+    </div>
+  </div>
+
+  <!--
+    Scripts — load order matters:
+    1. data.js        → personal content (edit this to customise)
+    2. filesystem.js  → virtual FS tree & path helpers
+    3. commands.js    → rendering functions & command processor
+    4. terminal.js    → UI engine (input, history, output)
+  -->
+  <script src="js/data.js"></script>
+  <script src="js/filesystem.js"></script>
+  <script src="js/commands.js"></script>
+  <script src="js/terminal.js"></script>
+
+</body>
+</html>

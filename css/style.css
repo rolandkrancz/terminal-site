@@ -1,0 +1,212 @@
+/* ═══════════════════════════════════════════════════════════
+   style.css — Terminal portfolio theme
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Reset & Base ──────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background: #0d0d0d;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 14px;
+  color: #d4d4d4;
+  overflow: hidden;
+}
+
+/* ── Terminal Window ───────────────────────────────────────── */
+.terminal-window {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 960px;
+  height: 90vh;
+  margin: 5vh auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6),
+              0 0 0 1px rgba(255, 255, 255, 0.06);
+  background: #1a1a2e;
+}
+
+/* ── Title Bar ─────────────────────────────────────────────── */
+.title-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #16213e;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.dot.red    { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green  { background: #27c93f; }
+
+.title {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+  color: #6c7a96;
+  letter-spacing: 0.5px;
+}
+
+/* ── Terminal Body ─────────────────────────────────────────── */
+.terminal-body {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  background: #1a1a2e;
+}
+
+/* Scrollbar */
+.terminal-body::-webkit-scrollbar {
+  width: 8px;
+}
+.terminal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.terminal-body::-webkit-scrollbar-thumb {
+  background: #2a2a4a;
+  border-radius: 4px;
+}
+.terminal-body::-webkit-scrollbar-thumb:hover {
+  background: #3a3a5a;
+}
+
+/* ── Output ────────────────────────────────────────────────── */
+#output {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.6;
+}
+
+.output-line {
+  margin-bottom: 2px;
+}
+
+/* ── Prompt Row ────────────────────────────────────────────── */
+.prompt-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  white-space: nowrap;
+}
+
+.prompt-label {
+  color: #27c93f;
+  font-weight: 600;
+}
+
+.prompt-path {
+  color: #44b9d6;
+  font-weight: 500;
+}
+
+.prompt-symbol {
+  color: #e0e0e0;
+  font-weight: 600;
+}
+
+/* ── Input ─────────────────────────────────────────────────── */
+#input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e0e0e0;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 14px;
+  caret-color: #27c93f;
+}
+
+/* ── ASCII Art ─────────────────────────────────────────────── */
+.ascii-art {
+  color: #44b9d6;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* ── Links ─────────────────────────────────────────────────── */
+a {
+  color: #44b9d6;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(68, 185, 214, 0.4);
+  transition: color 0.2s, border-color 0.2s;
+}
+a:hover {
+  color: #7dd3fc;
+  border-bottom-color: #7dd3fc;
+}
+
+/* ── Section Heading ───────────────────────────────────────── */
+.section-heading {
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+/* ── Colour Utility Classes ────────────────────────────────── */
+.c-green   { color: #27c93f; }
+.c-cyan    { color: #44b9d6; }
+.c-yellow  { color: #e5c07b; }
+.c-red     { color: #e06c75; }
+.c-magenta { color: #c678dd; }
+.c-muted   { color: #6c7a96; }
+.c-bold    { font-weight: 700; }
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  html, body {
+    font-size: 12px;
+  }
+  .terminal-window {
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+    max-width: 100%;
+  }
+  .title {
+    font-size: 10px;
+  }
+  .ascii-art {
+    font-size: 8px;
+    line-height: 1.1;
+  }
+}
+
+@media (max-width: 480px) {
+  html, body {
+    font-size: 11px;
+  }
+  .terminal-body {
+    padding: 10px;
+  }
+  .ascii-art {
+    font-size: 6px;
+  }
+}
+
+/* ── Selection ─────────────────────────────────────────────── */
+::selection {
+  background: rgba(68, 185, 214, 0.3);
+  color: #fff;
+}
+
+/* ── Blinking Cursor (input idle) ──────────────────────────── */
+#input:focus {
+  animation: none;
+}
