@@ -43,7 +43,7 @@
   const COMMANDS = [
     "help", "about", "skills", "projects", "experience", "education",
     "contact", "whoami", "date", "uname", "pwd", "ls",
-    "cd", "cat", "tree", "clear", "history", "grep", "exit", "echo",
+    "cd", "cat", "tree", "clear", "history", "echo",
     "ping", "git", "sudo", "curl",
   ];
 

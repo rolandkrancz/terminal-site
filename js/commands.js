@@ -49,16 +49,13 @@ ${span("Info", "c-yellow c-bold")}
   ${span("date", "c-green")}                Current date
   ${span("uname -a", "c-green")}            System info
   ${span("echo", "c-green")}  ${span("<text>", "c-muted")}          Print text
-  ${span("ping", "c-green")}  ${span("[host]", "c-muted")}          Ping a host
 
 ${span("Search", "c-yellow c-bold")}
-  ${span("grep", "c-green")} ${span("<pattern> <file>", "c-muted")} Search inside a file
   ${span("history", "c-green")}             Command history
 
 ${span("Session", "c-yellow c-bold")}
   ${span("clear", "c-green")}               Clear terminal
   ${span("help", "c-green")}                Show this help
-  ${span("exit", "c-green")}                Close terminal
 `;
 }
 
@@ -326,27 +323,6 @@ function processCommand(input) {
       document.getElementById("output").innerHTML = "";
       return null;
 
-    case "grep": {
-      if (!arg) return span("Usage: grep <pattern> <file>", "c-red");
-      const grepArgs = arg.split(/\s+/);
-      if (grepArgs.length < 2) return span("Usage: grep <pattern> <file>", "c-red");
-      const pattern = grepArgs[0].toLowerCase();
-      const fileContent = catFile(grepArgs[1]);
-      const lines = fileContent.replace(/<[^>]*>/g, "").split("\n");
-      const matched = lines.filter((l) => l.toLowerCase().includes(pattern));
-      return matched.length
-        ? matched
-            .map((l) => {
-              const idx = l.toLowerCase().indexOf(pattern);
-              const before = esc(l.slice(0, idx));
-              const match = span(l.slice(idx, idx + pattern.length), "c-red c-bold");
-              const after = esc(l.slice(idx + pattern.length));
-              return before + match + after;
-            })
-            .join("\n")
-        : span("(no matches)", "c-muted");
-    }
-
     case "sudo":
       if (arg.startsWith("rm"))
         return span("sudo: nice try, but this portfolio has plot armor.", "c-red");
@@ -373,10 +349,7 @@ function processCommand(input) {
     case "python":
     case "python3":
     case "node":
-      return span(`${cmd}: sorry, I only run vibes here. Try 'help' instead. 🐍`, "c-yellow");
-
-    case "exit":
-      return span("Goodbye! Thanks for visiting.", "c-green");
+      return span(`${cmd}: sorry, I only run vibes here. Try 'help' instead.`, "c-yellow");
 
     case "ping":
       return span(
